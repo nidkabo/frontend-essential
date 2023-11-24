@@ -21,7 +21,7 @@ const main = () => {
 
     newList.textContent = todoInput.value;
 
-    todoList.appendChild(trashIcon);
+    newList.appendChild(trashIcon);
 
     todoList.appendChild(newList);
 
