@@ -1,5 +1,22 @@
-const main = () => {
-  const frontendInput = document.getElementById("frontend");
+const main = async () => {
+  try {
+    const response = await fetch('https://api.minireg.thanayut.in.th/courses')
+
+    console.log(response)
+
+    // response has error message that better than status code
+    const rawData = await response.json()
+
+    // fetch don't reject to catch so we need to handle
+    if (!response.ok) {
+      throw new Error(`Code - ${response.status} - ${rawData.message}`)
+    }
+
+    console.log(rawData)
+  } catch (err) {
+    console.log(err)
+  }
+  /*   const frontendInput = document.getElementById("frontend");
 
   const frontendButton = document.getElementById("add-front");
 
@@ -29,9 +46,9 @@ const main = () => {
     newList.textContent = backendInput.value;
 
     backendMilestonesList.appendChild(newList);
-  });
-};
+  }); */
+}
 
-document.addEventListener("DOMContentLoaded", () => {
-  main();
-});
+document.addEventListener('DOMContentLoaded', () => {
+  main()
+})
